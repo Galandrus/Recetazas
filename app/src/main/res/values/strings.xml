@@ -6,16 +6,27 @@
     <string name="descEjemplo">Es una tarta con una masa brise, de relleno crema pastelera de limon y de decoracion merengue italiano</string>
     <string name="nomEjemplo">Lemon Pie </string>
     <string name="ingredientes">Ingredientes</string>
+    <string name="ingrediente">Ingrediente</string>
     <string name="ingredientesEjemplo">Harina</string>
     <string name="cantEjemplo">330 gr</string>
     <string name="preparacion">Preparación</string>
     <string name="tips">Tips</string>
     <string name="preparacionEj">Mezclar la harina con los huevos, y baitr por 2 minutos hasta que sea una masa lisa</string>
     <string name="paso">1)</string>
+    <string name="pasos">Pasos</string>
     <string name="categoriaEJ">Bizcochuelos</string>
     <string name="categoria">Categorías</string>
+    <string name="categorias">Categoría</string>
     <string name="recetas">Recetas</string>
-
-
+    <string name="agregarFoto">Seleccionar foto</string>
+    <string name="nombre">Nombre</string>
+    <string name="descripcion">Descripción</string>
+    <string name="detalles">Detalles</string>
+    <string name="tip">Tip</string>
+    <string name="guardar">Guardar</string>
+    <string name="cantidad">Cantidad</string>
+    <string name="agregarIngrediente">Agregar Ingrediente</string>
+    <string name="agregarPasos">Agregar Paso</string>
+    <string name="agregarTips">Agregar Tip</string>
 
 </resources>

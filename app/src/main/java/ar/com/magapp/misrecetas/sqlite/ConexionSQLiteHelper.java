@@ -48,7 +48,7 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper{
 
     ContentValues values =new ContentValues();
     values.put(campo, dato);
-    db.insert(nombreTabla,null,values);
+    db.insert(nombreTabla,null,values);  //si en nul le pones que queres uqe te devuelva, podes poner el id y ya tenes el id apra podener en las otras talbas.
     db.close();
     */
 }

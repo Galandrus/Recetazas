@@ -5,7 +5,7 @@ public class Utilidades {
 
     //TABLA CATEGORIA
     public static final String TABLA_CATEGORIAS="categorias";
-    public static final String CATEGORIA_ID="idCategoria";
+    public static final String CATEGORIA_ID="_idCategoria";
     public static final String CATEGORIAS_NOMBRE="nombreCategoria";
 
     public static final String CREAR_TABLA_CATEGORIA="CREATE TABLE "+TABLA_CATEGORIAS+" ("
@@ -14,7 +14,7 @@ public class Utilidades {
 
     // TABLA RECETA
     public static final String TABLA_RECETAS="recetas";
-    public static final String RECETA_ID ="idReceta";
+    public static final String RECETA_ID ="_idReceta";
     public static final String RECETAS_NOMBRE="nombreReceta";
     public static final String RECETA_DESCRIPCION="descripcion";
     public static final String RECETA_FOTO="foto";
@@ -28,12 +28,10 @@ public class Utilidades {
 
     //TABLA INGREDIENTES
     public static final String TABLA_INGREDIENTES="ingredientes";
-    public static final String ING_ID="idIngrediente";
     public static final String ING_NOMBRE="nombreIngrediente";
     public static final String ING_CANT="cantidad";
 
     public static final String CREAR_TABLA_INGREDIENTES="CREATE TABLE "+TABLA_INGREDIENTES+" ("
-            +ING_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"
             +ING_NOMBRE+" TEXT,"
             +ING_CANT+" TEXT,"
             +RECETA_ID+" INTEGER)";
