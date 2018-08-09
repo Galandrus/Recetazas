@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Receta implements Serializable {
 
+    private String id;
     private String nombre;
     private String descripcion;
     private int foto;
@@ -14,6 +15,12 @@ public class Receta implements Serializable {
     private ArrayList<String> tips;
 
     public Receta() {
+    }
+
+    public Receta(String nombre, String descripcion, int foto) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.foto = foto;
     }
 
     public Receta(String nombre, String descripcion, int foto, String categoria, ArrayList<Ingrediente> ingredientes, ArrayList<String> pasos, ArrayList<String> tips) {
@@ -81,5 +88,13 @@ public class Receta implements Serializable {
 
     public void setTips(ArrayList<String> tips) {
         this.tips = tips;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

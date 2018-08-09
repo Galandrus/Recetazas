@@ -2,6 +2,8 @@ package ar.com.magapp.misrecetas.fragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,8 +18,11 @@ import java.util.ArrayList;
 
 import ar.com.magapp.misrecetas.R;
 import ar.com.magapp.misrecetas.adaptadores.RecetaAdapter;
+import ar.com.magapp.misrecetas.entidades.Ingrediente;
 import ar.com.magapp.misrecetas.entidades.Receta;
 import ar.com.magapp.misrecetas.interfaces.IComunicacionFragment;
+import ar.com.magapp.misrecetas.sqlite.ConexionSQLiteHelper;
+import ar.com.magapp.misrecetas.utilidades.Utilidades;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -88,9 +93,11 @@ public class ListaRecetasFragment extends Fragment {
 
         Bundle objetoCategoria =getArguments();
         String categoria = null;
+        String idCategoria = null;
         if (objetoCategoria != null) {
             categoria = (String) objetoCategoria.getSerializable("mandoCategoria");
-            llenarListaRecetas(categoria);
+            idCategoria = (String) objetoCategoria.getSerializable("idCategoria");
+            llenarListaRecetas(idCategoria);
             RecetaAdapter adapter = new RecetaAdapter(listaRecetas);
             recyclerRecetas.setAdapter(adapter);
 
@@ -105,8 +112,58 @@ public class ListaRecetasFragment extends Fragment {
         return vista;
     }
 
-    private void llenarListaRecetas( String categ) {
+    private void llenarListaRecetas( String idCategoria) {
      //TENGO QUE LLENAR LA LISTA CON LA BASE DE DATOS
+        ConexionSQLiteHelper conn=new ConexionSQLiteHelper(getContext());
+        SQLiteDatabase db = conn.getReadableDatabase();
+        Receta auxReceta = null;
+        Cursor cursor=db.rawQuery(Utilidades.recuperarReceta(idCategoria), null);
+
+       while (cursor.moveToNext()){
+           auxReceta = new Receta();
+
+           //Recupero los detalles
+           auxReceta.setId(cursor.getString(0));
+           auxReceta.setNombre(cursor.getString(1));
+           auxReceta.setDescripcion(cursor.getString(2));
+           auxReceta.setFoto(cursor.getInt(3));
+
+            //Recupero los ingrediente
+           Cursor auxCursor= db.rawQuery(Utilidades.recuperarIngredientes(auxReceta.getId()),null);
+           ArrayList<Ingrediente> listaIngredientes = new ArrayList<>();
+
+           while (auxCursor.moveToNext()){
+               Ingrediente ing = new Ingrediente();
+               ing.setNombre(auxCursor.getString(0));
+               ing.setCant(auxCursor.getString(1));
+               listaIngredientes.add(ing);
+           }
+           auxReceta.setIngredientes(listaIngredientes);
+
+           //Recupero la preparacion
+           auxCursor= db.rawQuery(Utilidades.recuperarPreparacion(auxReceta.getId()),null);
+           ArrayList<String> listaPasos = new ArrayList<>();
+
+           while (auxCursor.moveToNext()){
+               listaPasos.add(auxCursor.getString(0));
+           }
+           auxReceta.setPasos(listaPasos);
+
+           //Recupero los tips
+           auxCursor= db.rawQuery(Utilidades.recuperarTips(auxReceta.getId()),null);
+           ArrayList<String> listaTips = new ArrayList<>();
+
+           while (auxCursor.moveToNext()){
+               listaTips.add(auxCursor.getString(0));
+           }
+           auxReceta.setTips(listaTips);
+
+           //Cargo la receta a la lista
+           listaRecetas.add(auxReceta);
+       }
+
+       db.close();
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -49,11 +49,13 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
+    <View
+        android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="@color/colorPrimary"
-      android:layout_marginTop="10dp"/>
+        android:background="#0d76c6"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"/>
+
 
 
 </LinearLayout>

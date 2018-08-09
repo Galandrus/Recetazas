@@ -3,26 +3,19 @@ package ar.com.magapp.misrecetas.actividades;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
-import android.text.style.TextAppearanceSpan;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
-import java.net.URI;
-
 import ar.com.magapp.misrecetas.R;
 import ar.com.magapp.misrecetas.sqlite.ConexionSQLiteHelper;
 import ar.com.magapp.misrecetas.utilidades.Utilidades;
@@ -164,6 +157,10 @@ public class AgregarRecetaActivity extends AppCompatActivity {
 
         //Cierro bd
         db.close();
+
+        Intent intent = new Intent(this, VerRecetaActivity.class);
+        startActivityForResult(intent,0);
+
     }
 
     @SuppressLint("ResourceType")

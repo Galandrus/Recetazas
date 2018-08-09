@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
  Llenar las listas con la db
  Guardar bien en la db
-
+ guardar las categorias si son nuevas
 
  foto expandible
  manjear los checbox

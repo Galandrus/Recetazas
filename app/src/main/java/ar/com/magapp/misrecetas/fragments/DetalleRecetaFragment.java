@@ -2,11 +2,14 @@ package ar.com.magapp.misrecetas.fragments;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +18,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 import ar.com.magapp.misrecetas.R;
+import ar.com.magapp.misrecetas.entidades.Ingrediente;
 import ar.com.magapp.misrecetas.entidades.Receta;
 
 import static ar.com.magapp.misrecetas.R.id.idFotoRecetaDetalle;
@@ -76,14 +80,15 @@ public class DetalleRecetaFragment extends Fragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View vista = inflater.inflate(R.layout.fragment_detalle_receta, container, false);
 
-        fotoDetalle=(ImageView) vista.findViewById(R.id.idFotoRecetaDetalle);
-        nombreDetalle = (TextView) vista.findViewById(R.id.idNombreRecetaDetalle);
-        descripcionDetalle = (TextView) vista.findViewById(R.id.idDescRecetaDetalle);
+        fotoDetalle= vista.findViewById(R.id.idFotoRecetaDetalle);
+        nombreDetalle = vista.findViewById(R.id.idNombreRecetaDetalle);
+        descripcionDetalle =  vista.findViewById(R.id.idDescRecetaDetalle);
 
         //Estos se crean dinamicamente.
         listaPreparacion = new ArrayList<TextView>();
@@ -95,11 +100,27 @@ public class DetalleRecetaFragment extends Fragment {
         Receta receta = null;
         if (objetoReceta != null){
             receta = (Receta) objetoReceta.getSerializable("mandoReceta");
-            fotoDetalle.setImageResource(receta.getFoto());
+
+            //Seteo detalles
+            fotoDetalle.setImageAlpha(receta.getFoto());
             nombreDetalle.setText(receta.getNombre());
             descripcionDetalle.setText(receta.getDescripcion());
 
-            //Poner Listas dinamicamente
+            //Creo y seteo ingredientes
+            ArrayList<Ingrediente> listaIngrediente = receta.getIngredientes();
+
+
+
+            //Creo y seteo Preparacion
+            ArrayList<String> listaPasos = receta.getPasos();
+
+
+
+            //Creo y seteo Tips
+            ArrayList<String> listaTips =  receta.getTips();
+
+
+
 
         }
         return vista;

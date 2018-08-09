@@ -3,6 +3,7 @@ package ar.com.magapp.misrecetas.actividades;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import ar.com.magapp.misrecetas.R;
 import ar.com.magapp.misrecetas.entidades.Receta;
@@ -34,10 +35,11 @@ public class VerRecetaActivity extends AppCompatActivity implements IComunicacio
     }
 
     @Override
-    public void enviarCategoria(String categoria) {
+    public void enviarCategoria(String categoria, String idCategoria) {
         recetasFragment=new ListaRecetasFragment();
         Bundle bundleEnvio =new Bundle();
         bundleEnvio.putSerializable("mandoCategoria",categoria);
+        bundleEnvio.putString("idCategoria", idCategoria);
         recetasFragment.setArguments(bundleEnvio);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragment, recetasFragment).addToBackStack(null).commit();
@@ -52,4 +54,6 @@ public class VerRecetaActivity extends AppCompatActivity implements IComunicacio
 
         getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragment, detalleRecetaFragment).addToBackStack(null).commit();
     }
+
+
 }

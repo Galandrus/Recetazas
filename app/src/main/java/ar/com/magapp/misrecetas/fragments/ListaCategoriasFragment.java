@@ -2,6 +2,10 @@ package ar.com.magapp.misrecetas.fragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,15 +14,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import ar.com.magapp.misrecetas.R;
+import ar.com.magapp.misrecetas.actividades.AgregarRecetaActivity;
 import ar.com.magapp.misrecetas.adaptadores.CategoriaAdapter;
 import ar.com.magapp.misrecetas.adaptadores.RecetaAdapter;
 import ar.com.magapp.misrecetas.entidades.Receta;
 import ar.com.magapp.misrecetas.interfaces.IComunicacionFragment;
+import ar.com.magapp.misrecetas.sqlite.ConexionSQLiteHelper;
+import ar.com.magapp.misrecetas.utilidades.Utilidades;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,6 +49,7 @@ public class ListaCategoriasFragment extends Fragment {
     ArrayList<String> listaCategoria;
     RecyclerView recyclerCategoria;
     IComunicacionFragment interfazcComunicacionFragment;
+    ImageButton btnAgregar;
 
     private OnFragmentInteractionListener mListener;
     private Activity activity;
@@ -91,16 +100,63 @@ public class ListaCategoriasFragment extends Fragment {
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Seleccion: " + listaCategoria.get(recyclerCategoria.getChildAdapterPosition(view)), Toast.LENGTH_SHORT).show();
-                interfazcComunicacionFragment.enviarCategoria(listaCategoria.get(recyclerCategoria.getChildAdapterPosition(view)));
+                String nombreCategoria =listaCategoria.get(recyclerCategoria.getChildAdapterPosition(view));
+                Toast.makeText(getContext(), "Seleccion: " +nombreCategoria , Toast.LENGTH_SHORT).show();
+                interfazcComunicacionFragment.enviarCategoria(nombreCategoria, getCategoriaId(view, nombreCategoria));
             }
         });
+
+        btnAgregar = vista.findViewById(R.id.idBtnAgregarReceta);
+        btnAgregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), AgregarRecetaActivity.class);
+                startActivityForResult(intent,0);
+            }
+        });
+
+
+
+
         return vista;
+    }
+
+    private String getCategoriaId(View view, String nombreCategoria) {
+        ConexionSQLiteHelper conn = new ConexionSQLiteHelper(getContext());
+        SQLiteDatabase db = conn.getReadableDatabase();
+        Cursor cursor=db.rawQuery(Utilidades.seleccionarCategoria(nombreCategoria),null);
+        String resultado;
+        if (cursor.moveToFirst()){
+            resultado = cursor.getString(0);
+        } else
+            resultado = null;
+
+        db.close();
+        return resultado;
     }
 
     private void llenarListaCategorias() {
         //LLENAR CATEGORIAS CON LA BD
+
+        ConexionSQLiteHelper conn = new ConexionSQLiteHelper(getContext());
+        SQLiteDatabase db = conn.getReadableDatabase();
+        Cursor cursor=db.rawQuery(Utilidades.RECUPERAR_CATEGORIAS,null);
+
+        if (cursor.moveToFirst()) {
+            listaCategoria.add(cursor.getString(0));
+            while (cursor.moveToNext()) {
+                listaCategoria.add(cursor.getString(0));
+            }
+        } else
+            listaCategoria.add("No hay categoria disponible");
+        db.close();
+
     }
+
+
+
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -145,4 +201,6 @@ public class ListaCategoriasFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
 }

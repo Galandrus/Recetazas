@@ -1,5 +1,7 @@
 package ar.com.magapp.misrecetas.adaptadores;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,11 +33,12 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetasVie
         return new RecetasViewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBindViewHolder(RecetasViewHolder holder, int position) {
         holder.recetaNombre.setText(listaRecetas.get(position).getNombre());
         holder.recetaDesc.setText(listaRecetas.get(position).getDescripcion());
-        holder.recetaFoto.setImageResource(listaRecetas.get(position).getFoto());
+        holder.recetaFoto.setImageAlpha(listaRecetas.get(position).getFoto());
     }
 
     @Override

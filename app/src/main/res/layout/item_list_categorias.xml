@@ -7,29 +7,23 @@
     android:orientation="vertical">
 
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/idNombreCategoria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:text="@string/categoriaEJ"
+        />
 
-            <TextView
-                android:id="@+id/idNombreCategoria"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="5dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:text="@string/categoriaEJ"
-                />
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
+    <View
+        android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="@color/colorPrimary"
-        android:layout_marginTop="10dp"/>
+        android:background="#0d76c6"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"/>
 
 
 </LinearLayout>
