@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".actividades.AgregarRecetaActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/detalles"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/idAgregarFoto"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:contentDescription="@string/detalleFoto"
+                        app:srcCompat="@android:drawable/ic_menu_report_image" />
+
+                    <Button
+                        android:id="@+id/idBotonFotoAgregar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/agregarFoto"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_gravity="bottom"
+                        android:backgroundTint="#347fca"
+                        android:onClick="cargarFoto"/>
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/idNombreAgregar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
+                    android:hint="@string/nombre"
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/idDescAgregar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
+                    android:hint="@string/descripcion"
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/idCategoriaAgregar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/categorias"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:inputType="text"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/idLLIngredientes">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/ingredientes"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/idLLReference"
+                    >
+
+                    <EditText
+                        android:id="@+id/idIngredienteAgregar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/ingrediente"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+                        android:inputType="text"/>
+
+                    <EditText
+                        android:id="@+id/idCantidadAgregar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/cantidad"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:inputType="text"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/idAgregarIngredienteAgregar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/agregarIngrediente"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:backgroundTint="#347fca"
+                android:onClick="agregarIngrediente"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/idLLPreparacion">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/preparacion"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/idPasoAgregar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/pasos"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:inputType="text"/>
+
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/idAgregarPasoAgregar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/agregarPasos"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:backgroundTint="#347fca"
+                android:onClick="agregarPaso"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/idLLTips">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/tips"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/idTipAgregar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/tip"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:inputType="text"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/idAgregarTipAgregar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/agregarTips"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:backgroundTint="#347fca"
+                android:onClick="agregarTip"/>
+
+            <Button
+                android:id="@+id/idGuardarAgregar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/guardar"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:backgroundTint="#07be50"
+                android:onClick="GuardarReceta"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

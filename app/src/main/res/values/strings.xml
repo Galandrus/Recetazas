@@ -28,5 +28,6 @@
     <string name="agregarIngrediente">Agregar Ingrediente</string>
     <string name="agregarPasos">Agregar Paso</string>
     <string name="agregarTips">Agregar Tip</string>
+    <string name="detalleFoto">Foto de la comida</string>
 
 </resources>

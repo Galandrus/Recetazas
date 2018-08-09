@@ -23,10 +23,11 @@ public class MainActivity extends AppCompatActivity {
 
 /*
  Falta
- Hacer la db
+
  Llenar las listas con la db
- Crear vista dinamicamente
- hacer la activity de agregar receta
+ Guardar bien en la db
+
+
  foto expandible
  manjear los checbox
  Probando Github
