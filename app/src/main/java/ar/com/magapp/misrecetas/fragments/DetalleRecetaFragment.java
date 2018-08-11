@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -18,9 +20,13 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 import ar.com.magapp.misrecetas.R;
+import ar.com.magapp.misrecetas.entidades.CustomCheckBox;
+import ar.com.magapp.misrecetas.entidades.CustomLinearLayout;
+import ar.com.magapp.misrecetas.entidades.CustomTextView;
 import ar.com.magapp.misrecetas.entidades.Ingrediente;
 import ar.com.magapp.misrecetas.entidades.Receta;
 
+import static ar.com.magapp.misrecetas.R.id.action0;
 import static ar.com.magapp.misrecetas.R.id.idFotoRecetaDetalle;
 import static ar.com.magapp.misrecetas.R.id.text;
 
@@ -46,8 +52,6 @@ public class DetalleRecetaFragment extends Fragment {
 
     ImageView fotoDetalle;
     TextView nombreDetalle,descripcionDetalle;
-    ArrayList<TextView> listaPreparacion, listaTips, listaIngredientes, listaCantidades;
-
 
     public DetalleRecetaFragment() {
         // Required empty public constructor
@@ -90,15 +94,13 @@ public class DetalleRecetaFragment extends Fragment {
         nombreDetalle = vista.findViewById(R.id.idNombreRecetaDetalle);
         descripcionDetalle =  vista.findViewById(R.id.idDescRecetaDetalle);
 
-        //Estos se crean dinamicamente.
-        listaPreparacion = new ArrayList<TextView>();
-        listaTips = new ArrayList<TextView>();
-        listaIngredientes = new ArrayList<TextView>();
-        listaCantidades = new ArrayList<TextView>();
-
         Bundle objetoReceta =getArguments();
-        Receta receta = null;
+        Receta receta;
         if (objetoReceta != null){
+
+            LinearLayout rootLayout;       //LinearLayput raiz de cada objeto en la vista
+            int indiceLista;    //Indice para recorrer las listas
+
             receta = (Receta) objetoReceta.getSerializable("mandoReceta");
 
             //Seteo detalles
@@ -108,18 +110,105 @@ public class DetalleRecetaFragment extends Fragment {
 
             //Creo y seteo ingredientes
             ArrayList<Ingrediente> listaIngrediente = receta.getIngredientes();
+            boolean completeFila=false;
+            int contadorForEach=0;
+            int tamañoListaIng = listaIngrediente.size();
+
+                // Referecio a los objetos de la vista deseada
+            rootLayout= vista.findViewById(R.id.idTablaIngredientes);
+            CustomLinearLayout llIng = new CustomLinearLayout(getContext());
 
 
+                //Creo dinamicamente los objetos de la vista necesarios
+            for(Ingrediente ing: listaIngrediente) {
+                contadorForEach++;
+                CustomLinearLayout llForRow = new CustomLinearLayout(getContext());
+                llForRow.setForIngredientesForRow();
+
+                CustomCheckBox box =new CustomCheckBox(getContext());
+                box.setBoxForIngrediente();
+
+                CustomTextView ingrediente = new CustomTextView(getContext());
+                ingrediente.setIngForIngredientes();
+                ingrediente.setText(ing.getNombre());
+
+                CustomTextView cant = new CustomTextView(getContext());
+                cant.setCantForIngredientes();
+                cant.setText(ing.getCant());
+
+                llForRow.addView(box);
+                llForRow.addView(ingrediente);
+                llForRow.addView(cant);
+
+                if (!completeFila) {
+                    llIng = new CustomLinearLayout(getContext());
+                    llIng.setForIngredientes();
+                    llIng.addView(llForRow);
+                    completeFila=true;
+                } else {
+                    llIng.addView(llForRow);
+                    rootLayout.addView(llIng);
+                    completeFila=false;
+                }
+
+               if (contadorForEach==tamañoListaIng && completeFila){
+                    rootLayout.addView(llIng);
+                }
+
+
+            }
 
             //Creo y seteo Preparacion
             ArrayList<String> listaPasos = receta.getPasos();
+            indiceLista=0;
 
+                // Referecio a los objetos de la vista deseada
+            rootLayout = vista.findViewById(R.id.idTablaPreparacion);
+
+                //Creo dinamicamente los objetos de la vista necesarios
+            for(String str: listaPasos) {
+                CustomLinearLayout llPaso = new CustomLinearLayout(getContext());
+                llPaso.setForPreparacion();
+
+                CustomTextView indicePreparacion = new CustomTextView(getContext());
+                indicePreparacion.setIndiceForPreparacion();
+                String indice=String.valueOf(++indiceLista)+")";
+                indicePreparacion.setText(indice);
+
+                CustomTextView paso = new CustomTextView(getContext());
+                paso.setPasoForPreparacion();
+                paso.setText(str);
+
+                llPaso.addView(indicePreparacion);
+                llPaso.addView(paso);
+                rootLayout.addView(llPaso);
+            }
 
 
             //Creo y seteo Tips
             ArrayList<String> listaTips =  receta.getTips();
+            indiceLista=0;
+                // Referecio a los objetos de la vista deseada
+            rootLayout = vista.findViewById(R.id.idTablaTips);
 
+                //Creo dinamicamente los objetos de la vista necesarios
+            for(String str: listaTips) {
+                CustomLinearLayout llTip = new CustomLinearLayout(getContext());
+                llTip.setForTips();
 
+                CustomTextView indiceTip = new CustomTextView(getContext());
+                indiceTip.setIndiceForTips();
+                String indice=String.valueOf(++indiceLista)+")";
+                indiceTip.setText(indice);
+
+                CustomTextView tip = new CustomTextView(getContext());
+                tip.setTipForTips();
+                tip.setText(str);
+
+                llTip.addView(indiceTip);
+                llTip.addView(tip);
+                rootLayout.addView(llTip);
+            }
 
 
         }

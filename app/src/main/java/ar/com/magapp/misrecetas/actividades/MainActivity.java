@@ -24,12 +24,13 @@ public class MainActivity extends AppCompatActivity {
 /*
  Falta
 
- Llenar las listas con la db
+ Que no se cierre cuando minimize
+ Que empiese con mayuscula
+
  Guardar bien en la db
  guardar las categorias si son nuevas
 
  foto expandible
- manjear los checbox
- Probando Github
+
 
  */

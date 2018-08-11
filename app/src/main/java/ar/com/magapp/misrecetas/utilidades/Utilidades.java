@@ -68,7 +68,7 @@ public class Utilidades {
     public static String recuperarReceta(String categoria) {
         return  "select " + RECETA_ID + " , " + RECETAS_NOMBRE + " , " + RECETA_DESCRIPCION + " , " + RECETA_FOTO +
                 " from " + TABLA_RECETAS +
-                " where " + CATEGORIA_ID + " = '"+ categoria+"'" +
+                " where " + CATEGORIA_ID + " = '"+ categoria +"'" +
                 " order by " + RECETAS_NOMBRE;
     }
 

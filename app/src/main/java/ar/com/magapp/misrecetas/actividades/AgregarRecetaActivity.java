@@ -144,13 +144,13 @@ public class AgregarRecetaActivity extends AppCompatActivity {
         db.insert(Utilidades.TABLA_TIPS,null,valoresTips);
 
         for (int i=idTipsStart;i<idTips;i++){
-            valoresPreparacion= new ContentValues();
+            valoresTips= new ContentValues();
             EditText tipAux = findViewById(i);
 
-            valoresPreparacion.put(Utilidades.TIPS_TIP,tipAux.getText().toString());
-            valoresPreparacion.put(Utilidades.RECETA_ID, recetaId);
+            valoresTips.put(Utilidades.TIPS_TIP,tipAux.getText().toString());
+            valoresTips.put(Utilidades.RECETA_ID, recetaId);
 
-            db.insert(Utilidades.TABLA_PREPARACION,null,valoresTips);
+            db.insert(Utilidades.TABLA_TIPS,null,valoresTips);
         }
         //Aviso que se creo bien
        Toast.makeText(this,"Se guardo exitosamente", Toast.LENGTH_SHORT).show();
