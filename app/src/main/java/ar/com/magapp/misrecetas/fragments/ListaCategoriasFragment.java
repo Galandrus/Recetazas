@@ -102,7 +102,7 @@ public class ListaCategoriasFragment extends Fragment {
             public void onClick(View view) {
                 String nombreCategoria =listaCategoria.get(recyclerCategoria.getChildAdapterPosition(view));
                 Toast.makeText(getContext(), "Seleccion: " +nombreCategoria , Toast.LENGTH_SHORT).show();
-                interfazcComunicacionFragment.enviarCategoria(nombreCategoria, getCategoriaId(view, nombreCategoria));
+                interfazcComunicacionFragment.enviarCategoria(nombreCategoria, getCategoriaId(nombreCategoria));
             }
         });
 
@@ -121,7 +121,7 @@ public class ListaCategoriasFragment extends Fragment {
         return vista;
     }
 
-    private String getCategoriaId(View view, String nombreCategoria) {
+    private String getCategoriaId(String nombreCategoria) {
         ConexionSQLiteHelper conn = new ConexionSQLiteHelper(getContext());
         SQLiteDatabase db = conn.getReadableDatabase();
         Cursor cursor=db.rawQuery(Utilidades.seleccionarCategoria(nombreCategoria),null);

@@ -79,7 +79,6 @@
         </LinearLayout>
 
 
-
         <LinearLayout
             android:id="@+id/idTablaPreparacion"
             android:layout_width="match_parent"

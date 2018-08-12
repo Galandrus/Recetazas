@@ -66,7 +66,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="15dp"
                     android:hint="@string/nombre"
-                    android:inputType="text" />
+                    android:inputType="textCapSentences" />
 
                 <EditText
                     android:id="@+id/idDescAgregar"
@@ -76,7 +76,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="15dp"
                     android:hint="@string/descripcion"
-                    android:inputType="text" />
+                    android:inputType="textCapSentences" />
 
                 <EditText
                     android:id="@+id/idCategoriaAgregar"
@@ -86,7 +86,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:inputType="text"/>
+                    android:inputType="textCapSentences"/>
             </LinearLayout>
 
             <LinearLayout
@@ -119,7 +119,7 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginLeft="15dp"
                         android:layout_weight="1"
-                        android:inputType="text"/>
+                        android:inputType="textCapSentences"/>
 
                     <EditText
                         android:id="@+id/idCantidadAgregar"
@@ -130,7 +130,7 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
                         android:layout_weight="1"
-                        android:inputType="text"/>
+                        android:inputType="textCapSentences"/>
 
                 </LinearLayout>
 
@@ -172,7 +172,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:inputType="text"/>
+                    android:inputType="textCapSentences"/>
 
 
             </LinearLayout>
@@ -210,7 +210,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:inputType="text"/>
+                    android:inputType="textCapSentences" />
 
             </LinearLayout>
 

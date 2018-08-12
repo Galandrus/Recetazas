@@ -3,6 +3,7 @@ package ar.com.magapp.misrecetas.actividades;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.Uri;
@@ -11,12 +12,14 @@ import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import ar.com.magapp.misrecetas.R;
+import ar.com.magapp.misrecetas.entidades.CustomEditText;
 import ar.com.magapp.misrecetas.sqlite.ConexionSQLiteHelper;
 import ar.com.magapp.misrecetas.utilidades.Utilidades;
 
@@ -85,9 +88,17 @@ public class AgregarRecetaActivity extends AppCompatActivity {
         SQLiteDatabase db=conn.getWritableDatabase();
 
         //Agrego Tabla Categorias
-        ContentValues valoresCategoria =new ContentValues();
-        valoresCategoria.put(Utilidades.CATEGORIAS_NOMBRE, categoria.getText().toString());
-        long categoriaId = db.insert(Utilidades.TABLA_CATEGORIAS,null,valoresCategoria);
+        Cursor cursor = db.rawQuery(Utilidades.seleccionarCategoria(categoria.getText().toString()),null);
+        long categoriaId;
+
+        if (cursor.moveToFirst()){
+            categoriaId = cursor.getInt(0);
+        }
+        else {
+            ContentValues valoresCategoria =new ContentValues();
+            valoresCategoria.put(Utilidades.CATEGORIAS_NOMBRE, categoria.getText().toString());
+            categoriaId = db.insert(Utilidades.TABLA_CATEGORIAS,null,valoresCategoria);
+        }
 
         //Agrego Tabla Receta
         ContentValues valoresReceta =new ContentValues();
@@ -165,20 +176,19 @@ public class AgregarRecetaActivity extends AppCompatActivity {
 
     @SuppressLint("ResourceType")
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+
     public void agregarIngrediente(View view) {
         LinearLayout rootLayout=  findViewById(R.id.idLLIngredientes);
         LinearLayout llReference= findViewById(R.id.idLLReference);
 
-        EditText ing=new EditText(this);
-        ing.setLayoutParams(ing1.getLayoutParams());
+        CustomEditText ing=new CustomEditText(this);
+        ing.setIngredientes();
         ing.setHint(R.string.ingredientes);
-        ing.setHintTextColor(Color.GRAY);
         ing.setId(idIngredientes); idIngredientes++;
 
-        EditText cant=new EditText(this);
-        cant.setLayoutParams(cant1.getLayoutParams());
+        CustomEditText cant=new CustomEditText(this);
+        cant.setCantidad();
         cant.setHint(R.string.cantidad);
-        cant.setHintTextColor(Color.GRAY);
         cant.setId(idCantidad); idCantidad++;
 
         LinearLayout ll = new LinearLayout(this);
@@ -193,20 +203,18 @@ public class AgregarRecetaActivity extends AppCompatActivity {
 
     public void agregarPaso(View view) {
         LinearLayout rootLayout= findViewById(R.id.idLLPreparacion);
-        EditText paso=new EditText(this);
-        paso.setLayoutParams(paso1.getLayoutParams());
+        CustomEditText paso=new CustomEditText(this);
+        paso.setPreparacion();
         paso.setHint(R.string.pasos);
-        paso.setHintTextColor(Color.GRAY);
         paso.setId(idPasos); idPasos++;
         rootLayout.addView(paso);
     }
 
     public void agregarTip(View view) {
         LinearLayout rootLayout=  findViewById(R.id.idLLTips);
-        EditText tip=new EditText(this);
-        tip.setLayoutParams(tip1.getLayoutParams());
+        CustomEditText tip=new CustomEditText(this);
+        tip.setTips();
         tip.setHint(this.getString(R.string.tip));
-        tip.setHintTextColor(Color.GRAY);
         tip.setId(idTips); idTips++;
         rootLayout.addView(tip);
     }

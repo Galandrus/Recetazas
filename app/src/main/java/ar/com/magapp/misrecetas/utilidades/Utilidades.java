@@ -98,6 +98,7 @@ public class Utilidades {
                 " from " + TABLA_TIPS +
                 " where " + RECETA_ID +" = '"+id+"'";
     }
+
 }
 
 

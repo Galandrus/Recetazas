@@ -25,7 +25,12 @@ public class MainActivity extends AppCompatActivity {
  Falta
 
  Que no se cierre cuando minimize
- Que empiese con mayuscula
+ Que empiece con mayuscula
+
+ guardar bine la foto
+
+ elegir categoria entre las disponibles
+ validar campos
 
  Guardar bien en la db
  guardar las categorias si son nuevas
