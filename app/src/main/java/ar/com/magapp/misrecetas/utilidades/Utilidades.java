@@ -10,7 +10,7 @@ public class Utilidades {
 
     public static final String CREAR_TABLA_CATEGORIA="CREATE TABLE "+TABLA_CATEGORIAS+" ("
             +CATEGORIA_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +CATEGORIAS_NOMBRE+" TEXT)";
+            +CATEGORIAS_NOMBRE+" TEXT NOT NULL)";
 
     // TABLA RECETA
     public static final String TABLA_RECETAS="recetas";
@@ -21,9 +21,9 @@ public class Utilidades {
 
     public static final String CREAR_TABLA_RECETA="CREATE TABLE "+TABLA_RECETAS+" ("
             +RECETA_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +RECETAS_NOMBRE+" TEXT, "
-            +RECETA_DESCRIPCION+" TEXT, "
-            +RECETA_FOTO+" INTEGER, "
+            +RECETAS_NOMBRE+" TEXT NOT NULL, "
+            +RECETA_DESCRIPCION+" TEXT NOT NULL, "
+            +RECETA_FOTO+" BLOB, "
             +CATEGORIA_ID+" INTEGER, FOREIGN KEY("+ CATEGORIA_ID +") REFERENCES "+ TABLA_CATEGORIAS +"("+ CATEGORIA_ID +"))";
 
     //TABLA INGREDIENTES
@@ -34,8 +34,8 @@ public class Utilidades {
 
     public static final String CREAR_TABLA_INGREDIENTES="CREATE TABLE "+TABLA_INGREDIENTES+" ("
             +ING_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +ING_NOMBRE+" TEXT,"
-            +ING_CANT+" TEXT,"
+            +ING_NOMBRE+" TEXT NOT NULL,"
+            +ING_CANT+" TEXT NOT NULL,"
             +RECETA_ID+" INTEGER, FOREIGN KEY("+ RECETA_ID +") REFERENCES "+ TABLA_RECETAS +"("+ RECETA_ID +"))";
 
 
@@ -46,7 +46,7 @@ public class Utilidades {
 
     public static final String CREAR_TABLA_PREPARACION="CREATE TABLE "+TABLA_PREPARACION+" ("
             +PREPARACION_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +PREPARACION_PASO+" TEXT,"
+            +PREPARACION_PASO+" TEXT NOT NULL,"
             +RECETA_ID+" INTEGER, FOREIGN KEY("+ RECETA_ID +") REFERENCES "+ TABLA_RECETAS +"("+ RECETA_ID +"))";
 
     //TABLA TIPS
@@ -56,7 +56,7 @@ public class Utilidades {
 
     public static final String CREAR_TABLA_TIPS="CREATE TABLE "+TABLA_TIPS+" ("
             +TIP_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +TIPS_TIP+" TEXT,"
+            +TIPS_TIP+" TEXT NOT NULL,"
             +RECETA_ID+" INTEGER, FOREIGN KEY("+ RECETA_ID +") REFERENCES "+ TABLA_RECETAS +"("+ RECETA_ID +"))";
 
 

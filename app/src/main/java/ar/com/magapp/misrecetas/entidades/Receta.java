@@ -1,5 +1,10 @@
 package ar.com.magapp.misrecetas.entidades;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+
+import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -8,7 +13,7 @@ public class Receta implements Serializable {
     private String id;
     private String nombre;
     private String descripcion;
-    private int foto;
+    private Uri foto;
     private String categoria;
     private ArrayList<Ingrediente> ingredientes;
     private ArrayList<String> pasos;
@@ -17,22 +22,6 @@ public class Receta implements Serializable {
     public Receta() {
     }
 
-    public Receta(String nombre, String descripcion, int foto) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.foto = foto;
-    }
-
-    public Receta(String nombre, String descripcion, int foto, String categoria, ArrayList<Ingrediente> ingredientes, ArrayList<String> pasos, ArrayList<String> tips) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.foto = foto;
-        this.categoria = categoria;
-        this.ingredientes = ingredientes;
-        this.pasos = pasos;
-        this.tips = tips;
-
-    }
 
     public String getNombre() {
         return nombre;
@@ -50,12 +39,12 @@ public class Receta implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public int getFoto() {
+    public Uri getFoto() {
         return foto;
     }
 
-    public void setFoto(int foto) {
-        this.foto = foto;
+    public void setFoto(String foto) {
+        this.foto = Uri.parse(foto);
     }
 
     public String getCategoria() {

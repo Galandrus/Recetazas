@@ -104,7 +104,7 @@ public class DetalleRecetaFragment extends Fragment {
             receta = (Receta) objetoReceta.getSerializable("mandoReceta");
 
             //Seteo detalles
-            fotoDetalle.setImageAlpha(receta.getFoto());
+            fotoDetalle.setImageURI(receta.getFoto());
             nombreDetalle.setText(receta.getNombre());
             descripcionDetalle.setText(receta.getDescripcion());
 

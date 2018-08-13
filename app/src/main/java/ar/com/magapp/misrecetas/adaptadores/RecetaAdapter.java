@@ -1,5 +1,7 @@
 package ar.com.magapp.misrecetas.adaptadores;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
 import ar.com.magapp.misrecetas.R;
@@ -38,7 +41,7 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.RecetasVie
     public void onBindViewHolder(RecetasViewHolder holder, int position) {
         holder.recetaNombre.setText(listaRecetas.get(position).getNombre());
         holder.recetaDesc.setText(listaRecetas.get(position).getDescripcion());
-        holder.recetaFoto.setImageAlpha(listaRecetas.get(position).getFoto());
+        holder.recetaFoto.setImageURI(listaRecetas.get(position).getFoto());
     }
 
     @Override

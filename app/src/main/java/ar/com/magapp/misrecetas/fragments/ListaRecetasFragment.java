@@ -126,8 +126,8 @@ public class ListaRecetasFragment extends Fragment {
            auxReceta.setId(cursor.getString(0));
            auxReceta.setNombre(cursor.getString(1));
            auxReceta.setDescripcion(cursor.getString(2));
-           auxReceta.setFoto(cursor.getInt(3));
-
+           if (!cursor.isNull(3))
+               auxReceta.setFoto(cursor.getString(3));
             //Recupero los ingrediente
            Cursor auxCursor= db.rawQuery(Utilidades.recuperarIngredientes(auxReceta.getId()),null);
            ArrayList<Ingrediente> listaIngredientes = new ArrayList<>();

@@ -10,7 +10,7 @@ import ar.com.magapp.misrecetas.utilidades.Utilidades;
 public class ConexionSQLiteHelper extends SQLiteOpenHelper{
 
     private static final String DB_NAME= "recetazas.sqlite";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
 
     public ConexionSQLiteHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);

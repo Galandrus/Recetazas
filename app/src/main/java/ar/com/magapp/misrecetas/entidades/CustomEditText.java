@@ -17,7 +17,7 @@ public class CustomEditText extends android.support.v7.widget.AppCompatEditText 
 
     private void setAparienciaInicial() {
         setLayoutParams(params);
-        setInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        setInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES | InputType.TYPE_TEXT_FLAG_AUTO_CORRECT);
         //setHintTextColor(Color.GRAY);
     }
 

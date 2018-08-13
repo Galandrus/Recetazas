@@ -66,7 +66,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="15dp"
                     android:hint="@string/nombre"
-                    android:inputType="textCapSentences" />
+                    android:inputType="textCapSentences|textAutoCorrect" />
 
                 <EditText
                     android:id="@+id/idDescAgregar"
@@ -76,9 +76,9 @@
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="15dp"
                     android:hint="@string/descripcion"
-                    android:inputType="textCapSentences" />
+                    android:inputType="textCapSentences|textAutoCorrect" />
 
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/idCategoriaAgregar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -86,7 +86,8 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:inputType="textCapSentences"/>
+                    android:inputType="textCapSentences|textAutoCorrect"
+                    android:completionThreshold="1"/>
             </LinearLayout>
 
             <LinearLayout
@@ -119,7 +120,7 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginLeft="15dp"
                         android:layout_weight="1"
-                        android:inputType="textCapSentences"/>
+                        android:inputType="textCapSentences|textAutoCorrect"/>
 
                     <EditText
                         android:id="@+id/idCantidadAgregar"
@@ -130,7 +131,7 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
                         android:layout_weight="1"
-                        android:inputType="textCapSentences"/>
+                        android:inputType="textCapSentences|textAutoCorrect"/>
 
                 </LinearLayout>
 
@@ -172,7 +173,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:inputType="textCapSentences"/>
+                    android:inputType="textCapSentences|textAutoCorrect"/>
 
 
             </LinearLayout>
@@ -210,7 +211,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:inputType="textCapSentences" />
+                    android:inputType="textCapSentences|textAutoCorrect" />
 
             </LinearLayout>
 
